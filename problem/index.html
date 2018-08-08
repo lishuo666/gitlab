@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>app</title>
+    <script type="text/javascript">
+    	
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+   			
+   		});
+   		
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script src="js/rem.js"></script>
+</head>
+<body>
+	 <div class="one-box">
+		<div class="one-content">
+			<div class="one-line">
+				<span class="name">问题：</span>
+			    <div class="content">登录密码错误，请重新登录，谢谢，再见，古德拜，北京运动宝贝科技有限公司</div>
+			</div>
+			<div class="line">
+				<span class="name">状态：</span>
+			    <div class="content">待处理</div>
+			</div>
+			<div class="line">
+				<span class="name">备注：</span>
+			    <div class="content">华联商厦</div>
+			</div>
+			<div class="line">
+				<span class="name">联系人：</span>
+			    <div class="content">李四</div>
+			</div>
+			<div class="line">
+				<span class="name">电话：</span>
+			    <div class="content" style="float: left;padding-left: 0;margin-right: 0.8rem;">15555555555</div>
+			    <span class="dial">拨号</span>
+			</div>
+			<div class="line">
+				<span class="name">推送时间：</span>
+			    <div class="content">2018-07-02</div>
+			</div>
+			<div class="si">
+				<span class="name">是否移交：</span>
+				<span class="inp" @click="showToggle">
+					<img v-show="isShow" class="yes" src="img/yes.png"/>
+				</span>
+				<div class="select-div" v-show="inputShow">
+					<select class="select" name="">
+						<option value="">李先生</option>
+						<option value="">2222</option>
+						<option value="">3333</option>
+						<option value="">4444</option>
+					</select>
+					<img class="icon-select" src="img/select.png"/>
+				</div>
+			</div>
+		</div>
+		<!--文本域-->
+		<div class="textarea-div">
+			<textarea class="textarea" name="" placeholder="请输入内容解决方案～" rows="" cols=""></textarea>
+		    <span class="num">200字</span>
+		</div>
+		<!--上传图片-->
+		<!--<div class="upload-img">
+			<input type="file" class="add-img" accept="image/*" multiple>
+			<img src="img/add.png" class="add"/>
+		</div>-->
+		<el-upload
+		  action="https://jsonplaceholder.typicode.com/posts/"
+		  list-type="picture-card"
+		  :on-preview="handlePictureCardPreview"
+		  :on-remove="handleRemove">
+		  <i class="el-icon-plus"></i>
+		</el-upload>
+		<el-dialog :visible.sync="dialogVisible">
+		  <img width="100%" :src="dialogImageUrl" alt="">
+		</el-dialog>
+		
+		<div class="someter">
+			<input type="submit" class="btn bottom" value="提交" />
+		</div>
+			
+		<!--第二个box-->	
+		<div class="one-content">
+			<div class="one-line">
+				<span class="name">问题：</span>
+			    <div class="content">登录密码错误，请重新登录，谢谢，再见，古德拜，北京运动宝贝科技有限公司</div>
+			</div>
+			<div class="line">
+				<span class="name">方案：</span>
+			    <div class="content">密码已重置</div>
+			</div>
+			<div class="line">
+				<span class="name">状态：</span>
+			    <div class="content">已解决</div>
+			</div>
+			<div class="line">
+				<span class="name">解决时间：</span>
+			    <div class="content">2018-07-02</div>
+			</div>
+			<div class="si">
+				<span class="name">满意度：</span>
+				<!--星级评价-->
+				<el-rate
+				  v-model="value3"
+				  show-text>
+				</el-rate>
+				
+			</div>
+			
+		</div>
+		<!--文本域-->
+		<div class="textarea-div">
+			<textarea class="textarea" name="" placeholder="请输入客观评价～" rows="" cols=""></textarea>
+		    <span class="num">200字</span>
+		</div>
+<!--		上传图片-->
+		<el-upload
+		  action="https://jsonplaceholder.typicode.com/posts/"
+		  list-type="picture-card"
+		  :on-preview="handlePictureCardPreview"
+		  :on-remove="handleRemove">
+		  <i class="el-icon-plus"></i>
+		</el-upload>
+		<el-dialog :visible.sync="dialogVisible">
+		  <img width="100%" :src="dialogImageUrl" alt="">
+		</el-dialog>
+		
+		<div class="someter bottom">
+			<input type="submit" class="btn" value="提交" />
+		</div>
+		
+		<!--第三个box-->
+		<div class="one-content">
+			<div class="one-line">
+				<span class="name">问题：</span>
+			    <div class="content">登录密码错误，请重新登录，谢谢，再见，古德拜，北京运动宝贝科技有限公司</div>
+			</div>
+			<div class="line">
+				<span class="name">方案：</span>
+			    <div class="content">密码已重置</div>
+			</div>
+			<div class="line">
+				<span class="name">状态：</span>
+			    <div class="content">已解决</div>
+			</div>
+			<div class="line">
+				<span class="name">解决时间：</span>
+			    <div class="content">2018-07-02</div>
+			</div>
+			<div class="si">
+				<span class="name">是否补充问题：</span>
+				<span class="inp" @click="showText">
+					<img v-show="imgShow" class="yes" src="img/yes.png"/>
+				</span>
+			</div>
+		</div>
+		<!--文本域-->
+		<div class="textarea-div" v-show="showTxt">
+			<textarea class="textarea" name="" placeholder="请输入问题～" rows="" cols=""></textarea>
+		    <span class="num">200字</span>
+		</div>
+		<!--上传图片-->
+		<el-upload
+		  action="https://jsonplaceholder.typicode.com/posts/"
+		  list-type="picture-card"
+		  :on-preview="handlePictureCardPreview"
+		  :on-remove="handleRemove">
+		  <i class="el-icon-plus"></i>
+		</el-upload>
+		<el-dialog :visible.sync="dialogVisible">
+		  <img width="100%" :src="dialogImageUrl" alt="">
+		</el-dialog>
+		<div class="someter bottom">
+			<input type="submit" class="btn" value="提交" />
+		</div>
+		
+     </div>
+     
+     
+	 
+</body>
+</html>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script type="text/javascript">
+	 var vm = new Vue({
+	 	 el:'.one-box',
+		 data(){
+		 	return{
+		 		isShow:true,
+			  	inputShow:true,
+			  	showTxt:true,
+			  	imgShow:true,
+			  	dialogImageUrl: '',
+		        dialogVisible: false,
+		        value3: null
+		 	}	
+		 },
+		 methods:{
+		 	showToggle(){
+		 	    this.isShow = !this.isShow;
+		 	    this.inputShow = !this.inputShow;
+		 	},
+		 	showText(){
+		 		this.imgShow = !this.imgShow;
+		 		this.showTxt = !this.showTxt;
+		 	},
+		 	handleRemove(file, fileList) {
+		        console.log(file, fileList);
+		    },
+	        handlePictureCardPreview(file) {
+	           this.dialogImageUrl = file.url;
+	           this.dialogVisible = true;
+	        }
+		 }
+	 })
+	 
+</script>
